@@ -4,14 +4,13 @@
 #include "font.h"
 #include "onegin.h"
 
-void output_sorted_text(char** array_of_pointers, size_t number_of_strings, FILE* output_file)
+void output_sorted_text(struct text_data* text, FILE* output_file)
 {
-    assert(array_of_pointers);
-    assert(*array_of_pointers);
+    assert(text);
 
-    for (size_t i = 0; i < number_of_strings; i++)
+    for (size_t i = 0; i < text->number_of_strings; i++)
     {
-        fputs(array_of_pointers[i], output_file);
+        fputs(text->array_of_pointers[i], output_file);
         putc('\n', output_file);
     }
 

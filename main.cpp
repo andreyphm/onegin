@@ -11,22 +11,27 @@ int main(int argc, const char* argv[])
     parse_argc_argv(argc, argv);
     check_files(poem_file, output_file);
 
-    size_t number_of_strings = 0;
     char* buffer = read_file_to_buffer(poem_file);
-    char** array_of_pointers = strings_addresses_to_array(buffer, &number_of_strings);
+    struct text_data text =
+    {
+        .array_of_pointers = NULL,
+        .number_of_strings = 0
+    };
 
-    //bubble_sort(array_of_pointers, number_of_strings, compare_strings);
-    qsort(array_of_pointers, number_of_strings, sizeof(char*), compare_strings);
-    output_sorted_text(array_of_pointers, number_of_strings, output_file);
+    text.array_of_pointers = strings_addresses_to_array(buffer, &text.number_of_strings);
 
-    //bubble_sort(array_of_pointers, number_of_strings, compare_strings_reverse);
-    qsort(array_of_pointers, number_of_strings, sizeof(char*), compare_strings_reverse);
-    output_sorted_text(array_of_pointers, number_of_strings, output_file);
+    //bubble_sort(text.array_of_pointers, number_of_strings, compare_strings);
+    qsort(text.array_of_pointers, text.number_of_strings, sizeof(char*), compare_strings);
+    output_sorted_text(&text, output_file);
 
-    output_poem_text(number_of_strings, buffer, output_file);
+    //bubble_sort(text.array_of_pointers, text.number_of_strings, compare_strings_reverse);
+    qsort(text.array_of_pointers, text.number_of_strings, sizeof(char*), compare_strings_reverse);
+    output_sorted_text(&text, output_file);
+
+    output_poem_text(text.number_of_strings, buffer, output_file);
 
     free(buffer);
-    free(array_of_pointers);
+    free(text.array_of_pointers);
 
     printf(MAKE_BOLD("Program completed. COMMIT GITHUB\n"));
     return 0;

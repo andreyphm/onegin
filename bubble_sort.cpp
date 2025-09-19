@@ -1,15 +1,14 @@
 #include "onegin.h"
 
-void bubble_sort(char** array_of_pointers, size_t number_of_strings,
-                int (*comparison_function)(const void*, const void*))
+void bubble_sort(struct text_data* text, int (*comparison_function)(const void*, const void*))
 {
-    for (size_t i = 0; i < number_of_strings - 1; i++)
+    for (size_t i = 0; i < text->number_of_strings - 1; i++)
     {
-        for (size_t j = 0; j < number_of_strings - 1; j++)
+        for (size_t j = 0; j < text->number_of_strings - 1; j++)
         {
-            if (comparison_function(&array_of_pointers[j], &array_of_pointers[j+1]) == 1)
+            if (comparison_function(&(text->array_of_pointers[j]), &(text->array_of_pointers[j+1])) == 1)
             {
-                exchange_values(&array_of_pointers[j], &array_of_pointers[j+1]);
+                exchange_values(&(text->array_of_pointers[j]), &(text->array_of_pointers[j+1]));
             }
         }
     }
