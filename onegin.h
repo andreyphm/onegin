@@ -14,6 +14,10 @@ void count_strings(char* buffer, size_t* number_of_strings);
 void post_pointers(char** array_of_pointers, char* start_of_buffer, char* buffer);
 char** strings_addresses_to_array(char* buffer, size_t* number_of_strings);
 
+void bubble_sort(char** array_of_pointers, size_t number_of_strings,
+                int (*comparison_function)(const void*, const void*));
+void exchange_values(char** element_1, char** element_2);
+
 int compare_strings(const void* string_1_address, const void* string_2_address);
 int my_strcmp(const char* string_1, const char* string_2);
 int compare_strings_reverse(const void* string_1_address, const void* string_2_address);

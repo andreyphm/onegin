@@ -15,9 +15,11 @@ int main(int argc, const char* argv[])
     char* buffer = read_file_to_buffer(poem_file);
     char** array_of_pointers = strings_addresses_to_array(buffer, &number_of_strings);
 
+    //bubble_sort(array_of_pointers, number_of_strings, compare_strings);
     qsort(array_of_pointers, number_of_strings, sizeof(char*), compare_strings);
     output_sorted_text(array_of_pointers, number_of_strings, output_file);
 
+    //bubble_sort(array_of_pointers, number_of_strings, compare_strings_reverse);
     qsort(array_of_pointers, number_of_strings, sizeof(char*), compare_strings_reverse);
     output_sorted_text(array_of_pointers, number_of_strings, output_file);
 
