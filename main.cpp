@@ -20,15 +20,26 @@ int main(int argc, const char* argv[])
 
     text.array_of_pointers = strings_addresses_to_array(buffer, &text.number_of_strings);
 
-    //bubble_sort(text.array_of_pointers, number_of_strings, compare_strings);
-    qsort(text.array_of_pointers, text.number_of_strings, sizeof(char*), compare_strings);
+    #ifdef USE_BUBBLE_SORT
+        SORT_FUNCTION(text.array_of_pointers, text.number_of_strings, compare_strings);
+    #endif
+    #ifdef USE_QSORT
+        SORT_FUNCTION(text.array_of_pointers, text.number_of_strings, sizeof(char*), compare_strings);
+    #endif
     output_sorted_text(&text, output_file);
 
-    //bubble_sort(text.array_of_pointers, text.number_of_strings, compare_strings_reverse);
-    qsort(text.array_of_pointers, text.number_of_strings, sizeof(char*), compare_strings_reverse);
+    #ifdef USE_BUBBLE_SORT
+        SORT_FUNCTION(text.array_of_pointers, text.number_of_strings, compare_strings_reverse);
+    #endif
+    #ifdef USE_QSORT
+        SORT_FUNCTION(text.array_of_pointers, text.number_of_strings, sizeof(char*), compare_strings_reverse);
+    #endif
     output_sorted_text(&text, output_file);
 
     output_poem_text(text.number_of_strings, buffer, output_file);
+
+    fclose(poem_file);
+    fclose(output_file);
 
     free(buffer);
     free(text.array_of_pointers);

@@ -3,6 +3,15 @@
 
 #include <stdio.h>
 
+#ifdef USE_BUBBLE_SORT
+    void bubble_sort(char** array_of_pointers, int number_of_strings, int (*comparison_function)(const void*, const void*));
+    #define SORT_FUNCTION bubble_sort
+#endif
+
+#ifdef USE_QSORT
+    #define SORT_FUNCTION qsort
+#endif
+
 const int CORRECT_NUMBER_OF_FILES = 3;
 const int NUMBER_OF_BLANK_STRINGS = 30;
 
@@ -20,7 +29,6 @@ void count_strings(char* buffer, size_t* number_of_strings);
 void post_pointers(char** array_of_pointers, char* start_of_buffer, char* buffer);
 char** strings_addresses_to_array(char* buffer, size_t* number_of_strings);
 
-void bubble_sort(struct text_data* text, int (*comparison_function)(const void*, const void*));
 void exchange_values(char** element_1, char** element_2);
 
 int compare_strings(const void* string_1_address, const void* string_2_address);

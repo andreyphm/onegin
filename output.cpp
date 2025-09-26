@@ -7,6 +7,7 @@
 void output_sorted_text(struct text_data* text, FILE* output_file)
 {
     assert(text);
+    assert(output_file);
 
     for (size_t i = 0; i < text->number_of_strings; i++)
     {
@@ -22,16 +23,11 @@ void output_sorted_text(struct text_data* text, FILE* output_file)
 
 void output_poem_text(size_t number_of_strings, char* buffer, FILE* output_file)
 {
-    fputs(buffer, output_file);
-    putc('\n', output_file);
-
-    char* string_pointer = 0;
+    assert(buffer);
+    assert(output_file);
 
     for (size_t i = 0; i < number_of_strings; i++)
     {
-        string_pointer = strchr(buffer, '\0');
-        buffer = string_pointer + 1;
-        fputs(buffer, output_file);
-        putc('\n', output_file);
+        buffer += fprintf(output_file, "%s\n", buffer);
     }
 }

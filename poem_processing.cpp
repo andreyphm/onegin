@@ -40,6 +40,9 @@ char** strings_addresses_to_array(char* buffer, size_t* number_of_strings)
 
 void count_strings(char* buffer, size_t* number_of_strings)
 {
+    assert(buffer);
+    assert(number_of_strings);
+
     char* string_pointer = 0;
 
     while ((string_pointer = strchr(buffer, '\n')) != NULL)
@@ -51,6 +54,10 @@ void count_strings(char* buffer, size_t* number_of_strings)
 
 void post_pointers(char** array_of_pointers, char* start_of_buffer, char* buffer)
 {
+    assert(array_of_pointers);
+    assert(start_of_buffer);
+    assert(buffer);
+
     char* string_pointer = 0;
     buffer = start_of_buffer;
     array_of_pointers[0] = start_of_buffer;
