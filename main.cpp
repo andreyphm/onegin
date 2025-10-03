@@ -59,12 +59,12 @@ void parse_argc_argv(int argc, const char* argv[])
 
 void check_files(FILE* poem_file, FILE* output_file)
 {
-    if (poem_file  == NULL)
+    if (!poem_file)
     {
         printf(MAKE_BOLD_RED("Can't open poem file.\n\n"));
         exit(EXIT_FAILURE);
     }
-    else if (output_file == NULL)
+    else if (!output_file)
     {
         printf(MAKE_BOLD_RED("Can't open output file.\n\n"));
         exit(EXIT_FAILURE);
